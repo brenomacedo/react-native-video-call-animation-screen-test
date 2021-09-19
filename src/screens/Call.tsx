@@ -2,10 +2,13 @@ import React, { FC } from 'react'
 import { StyleSheet, View, ImageBackground } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import { PanGestureHandler, PanGestureHandlerGestureEvent, RectButton } from 'react-native-gesture-handler'
-import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, withSpring } from 'react-native-reanimated'
+import useDimensions from '../hooks/useDimensions'
 
 
 const Call: FC = () => {
+
+    const Dimensions = useDimensions()
 
     type ContextType = {
         translateX: number
@@ -23,6 +26,37 @@ const Call: FC = () => {
         onActive: (event, ctx) => {
             translateX.value = event.translationX + ctx.translateX
             translateY.value = event.translationY + ctx.translateY
+        },
+        onEnd: () => {
+
+            if(translateX.value > Dimensions.window.width - 120) {
+                translateX.value = withSpring(Dimensions.window.width - 120, {
+                    stiffness: 200,
+                    damping: 15
+                })
+            }
+
+            if(translateX.value < 0) {
+                translateX.value = withSpring(0, {
+                    stiffness: 200,
+                    damping: 15
+                })
+            }
+
+            if(translateY.value > Dimensions.window.height - 260) {
+                translateY.value = withSpring(Dimensions.window.height - 260, {
+                    stiffness: 200,
+                    damping: 15
+                })
+            }
+
+            if(translateY.value < 0) {
+                translateY.value = withSpring(0, {
+                    stiffness: 200,
+                    damping: 15
+                })
+            }
+
         }
     })
 
