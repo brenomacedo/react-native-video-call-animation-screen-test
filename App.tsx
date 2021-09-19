@@ -1,11 +1,10 @@
-import React from 'react';
-import {View} from 'react-native';
+import React from 'react'
+import Call from './src/screens/Call'
 
 const App: React.FC = () => {
 
   return (
-    <View style={{flex: 1}}>
-    </View>
+    <Call />
   );
 };
 
