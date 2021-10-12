@@ -1,4 +1,5 @@
 package com.animationstest;
+import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
 // ====================== add this ===================
@@ -27,6 +28,11 @@ public class MainActivity extends ReactActivity {
        return new RNGestureHandlerEnabledRootView(MainActivity.this);
       }
     };
+  }
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(null);
   }
   // ====================================================
 }

@@ -1,10 +1,10 @@
 import React from 'react'
-import Call from './src/screens/Call'
+import Routes from './src/routes'
 
 const App: React.FC = () => {
 
   return (
-    <Call />
+    <Routes />
   );
 };
 
